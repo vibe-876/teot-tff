@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+if [ ! $# -ge 1 ]
+then
+    if ! command -v sbcl > /dev/null
+    then
+	echo "ERROR: Install sbcl, or specify the lisp program to use, and the arguments to run as a script!"
+	echo "ERROR: For example, ~teot-tff sbcl --script~."
+	exit 1
+    fi
+
+    LISP="sbcl --script"
+    
+else
+    LISP=$@
+fi
+
+$LISP src/main.lisp
