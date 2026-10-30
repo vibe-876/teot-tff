@@ -4,3 +4,14 @@
 
 
 HMRC is getting too powerful, so you must escape from them to the only remaining tax heaven: the moon!
+
+* Running
+Simply run ~teot-tff~ in the root of this project.
+I will probably make an actual install system at some point.
+
+** Dependencies
+- SBCL (or any other common lisp system)
+- Bash (or some other shell, but I'm using bash)
+
+If you want to use something other than SBCL, run the program with ~teot-tff <lisp> <whatever-arguments-it-needs-to-run-the-project-as-a-script>~.
+Alternatively, load ~src/main.lisp~, and evaluate ~(main)~.
