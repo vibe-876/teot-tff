@@ -6,7 +6,7 @@ then
     if ! command -v sbcl > /dev/null
     then
 	echo "ERROR: Install sbcl, or specify the lisp program to use, and the arguments to run as a script!"
-	echo "ERROR: For example, ~teot-tff sbcl --script~."
+	echo "ERROR: For example, ~teot-tff ecl --shell~."
 	exit 1
     fi
 
