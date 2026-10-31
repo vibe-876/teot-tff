@@ -9,9 +9,18 @@
 
 (defconstant moon-mass 7.346e22)
 (defconstant moon-surface-radius 1.737e6)
+(defconstant moon-distance-from-earth 3.84784e8)
 
 (defconstant dt 0.1)
 
+
+(defun gravity-from-earth (ship-mass position)
+  (gravitational-force earth-mass ship-mass
+		       (displacement-vector '(0 0) position)))
+
+(defun gravity-from-moon (ship-mass ship-position moon-position)
+  (gravitational-force moon-mass ship-mass
+		       (displacement-vector moon-position ship-position)))
 
 (defun gravitational-force (object-mass ship-mass radius)
   "RADIUS should be the position vector of the ship."
