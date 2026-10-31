@@ -13,18 +13,37 @@
 (defconstant dt 0.1)
 
 
-(defun gravitational-force (ship-mass radius)
-  (/ (* gravitational-constant earths-mass ship-mass)
-     (expt radius 2)))
+;; "Vector-ise" this later.
+;; https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation#Vector_form
+;; (defun gravitational-force (ship-mass radius)
+;;   (/ (* gravitational-constant earths-mass ship-mass)
+;;      (expt radius 2)))
+
+(defun gravitational-force (object-mass ship-mass radius)
+  "RADIUS should be the position vector of the ship."
+  (/ (* (* -1 gravitational-constant)
+	object-mass ship-mass
+	(normalise-vector radius))
+     (expt (magnitude radius) 2)))
+
+(defun magnitude (a)
+  (sqrt (apply '+
+	       (mapcar (lambda (an)
+			 (expt an 2))
+		       a))))
 
 (defun normalise-vector (a)
-  (let ((a-magnitude (sqrt (apply '+
-				  (mapcar (lambda (an)
-					    (expt an 2))
-					  a)))))
+  (let ((a-magnitude (magnitude a)))
     (mapcar (lambda (an)
 	      (/ an a-magnitude))
 	    a)))
+
+(defun displacement-vector (a b)
+  "Calculates the vector between a and b."
+  (add-vectors (mapcar (lambda (an)
+			 (* -1 an))
+		       a)
+	       b))
 
 (defun multiply-vector (alpha a)
   "Multiply a vector a by a (real) scalar alpha."
