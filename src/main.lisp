@@ -2,7 +2,9 @@
 
 
 (defun main ()
-  (let ((answer (gravitational-force 1 earth-surface-radius)))
+  (let ((answer (gravitational-force
+		 1 earth-mass
+		 (list earth-surface-radius 0))))
     (print answer)))
 
 (main)

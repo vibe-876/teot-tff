@@ -4,7 +4,7 @@
 ;; - Mass: Kilograms
 (defconstant gravitational-constant 6.6674e-11)
 
-(defconstant earths-mass 5.972e24)
+(defconstant earth-mass 5.972e24)
 (defconstant earth-surface-radius 6.371e6)
 
 (defconstant moon-mass 7.346e22)
