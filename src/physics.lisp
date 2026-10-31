@@ -13,18 +13,13 @@
 (defconstant dt 0.1)
 
 
-;; "Vector-ise" this later.
-;; https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation#Vector_form
-;; (defun gravitational-force (ship-mass radius)
-;;   (/ (* gravitational-constant earths-mass ship-mass)
-;;      (expt radius 2)))
-
 (defun gravitational-force (object-mass ship-mass radius)
   "RADIUS should be the position vector of the ship."
-  (/ (* (* -1 gravitational-constant)
-	object-mass ship-mass
-	(normalise-vector radius))
-     (expt (magnitude radius) 2)))
+  (divide-through-vector (multiply-vector
+			  (* -1 gravitational-constant
+			     object-mass ship-mass)
+			  (normalise-vector radius))
+			 (expt (magnitude radius) 2)))
 
 (defun magnitude (a)
   (sqrt (apply '+
@@ -44,6 +39,12 @@
 			 (* -1 an))
 		       a)
 	       b))
+
+(defun divide-through-vector (a alpha)
+  "Divide through a by alpha."
+  (mapcar (lambda (an)
+	    (/ an alpha))
+	  a))
 
 (defun multiply-vector (alpha a)
   "Multiply a vector a by a (real) scalar alpha."
