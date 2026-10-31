@@ -10,8 +10,9 @@ Simply run ~teot-tff~ in the root of this project.
 I will probably make an actual install system at some point.
 
 ** Dependencies
-- SBCL (or any other common lisp system)
+- SBCL (or any other common lisp system, but I'm developing it with SBCL)
 - Bash (or some other shell, but I'm using bash)
 
-If you want to use something other than SBCL, run the program with ~teot-tff <lisp> <whatever-arguments-it-needs-to-run-the-project-as-a-script>~.
+If you want to use something other than SBCL, run the program with ~./teot-tff <lisp> <whatever-arguments-it-needs-to-run-the-project-as-a-script>~.
+For example, you could do ~./teot-tff ecl --shell~.
 Alternatively, load ~src/main.lisp~, and evaluate ~(main)~.
