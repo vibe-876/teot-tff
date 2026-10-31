@@ -14,6 +14,33 @@
 (defconstant dt 0.1)
 
 
+(defclass ship ()
+  ((acceleration :accessor a
+	     :initarg :a
+	     :type list)
+   (mass :accessor m
+	 :initarg :m
+	 :type list)
+   (position :accessor s
+	     :initarg :s
+	     :initform (list earth-mass 0)
+	     :type list)))
+
+
+;; Probably need to make add-vectors take an arbitrary
+;; number of arguments, but that's neither here nor now.
+(defun force-on-ship (ship)
+  (let ((ship-mass (m ship))
+	(ship-position (s ship)))
+    (add-vectors
+     (add-vectors (gravity-from-earth ship-mass ship-position)
+		  (gravity-from-moon ship-mass ship-position (list moon-distance-from-earth 0)))
+     (get-velocity-force ship))))
+
+(defun get-velocity-force (ship)
+  (multiply-vector (m ship)
+		   (a ship)))
+
 (defun gravity-from-earth (ship-mass position)
   (gravitational-force earth-mass ship-mass
 		       (displacement-vector '(0 0) position)))
